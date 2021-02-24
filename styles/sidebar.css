@@ -1,0 +1,49 @@
+#footer {
+    background-color: #33b5e5;
+}
+
+#header {
+
+    color: #6a707b;
+}
+
+#navigation {
+}
+#sidebar {
+    background-color: #F2F5FA;
+    width: 40%;
+    height: 600px;
+    overflow: auto;
+    float: left;
+}
+#home {
+    /*background: url("/pictures/pinIcon.png");*/
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    padding: 8px;
+    text-decoration: none;
+    color: #6a707b ;
+}
+#them {
+    clear: both;
+    margin-top:30%;
+    text-indent: 10%;
+}
+#discount {
+    color: #6a707b;
+    word-wrap: normal;
+    text-indent: 10%;
+    width: 400px;
+}
