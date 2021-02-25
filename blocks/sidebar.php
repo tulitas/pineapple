@@ -1,3 +1,36 @@
+<?php
+ $emailErr = $termsErr = "";
+ $email = $mster  = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+
+    if (empty($_POST["email"])) {
+        $emailErr = "Email required";
+    } else {
+        $email = test_input($_POST["email"]);
+        // проверьте, правильно ли сформирован адрес электронной почты
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $emailErr = "Wrong email format ";
+        }
+    }
+
+
+
+    if (empty($_POST["terms"])) {
+        $genderErr = "Terms required";
+    } else {
+        $gender = test_input($_POST["terms"]);
+    }
+}
+
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+?>
 <div id="sidebar" style="width: 40%">
     <div id="navigation">
         <ul>
@@ -8,21 +41,32 @@
             <li id="contact" style="float: right"><a href="#">Contact</a></li>
         </ul>
     </div>
-    <div id="container">
+
         <div id="header">
             <h2 id="them">Subscribe to newsletter</h2>
         </div>
-        <p id="discount">
+        <p id="discount" style="text-align: left">
             Subscribe to our newsletterand get 10% discount on pineapple glasses.
         </p>
+
+
+    <div id="subscribe">
+        <form class="email" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <input id="etext" type="text" name="email" placeholder="Enter Email" required>
+
+            <button type="submit">Send</button>
+            <p><input id="terms" type="checkbox" name="terms"> I agree to <u>terms of service</u></p><br>
+            <span class="error"> <?php echo $emailErr;?></span><br>
+            <span class="error"> <?php echo $termsErr;?>
+        </form>
+
     </div>
 
-    <h2>Левая панель</h2>
-    <div id="clear">
+<div id="socials">
+    <a href="#" class="fa fa-facebook"></a>
+    <a href="#" class="fa fa-twitter"></a>
+    <a href="#" class="fa fa-instagram"></a>
+    <a href="#" class="fa fa-youtube"></a>
+</div>
 
-    </div>
-
-    <div id="footer">
-        <h2>footer (низ сайта)</h2>
-    </div>
 </div>

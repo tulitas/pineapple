@@ -1,3 +1,4 @@
+
 #footer {
     background-color: #33b5e5;
 }
@@ -40,10 +41,83 @@ li a {
     clear: both;
     margin-top:30%;
     text-indent: 10%;
+
 }
 #discount {
     color: #6a707b;
     word-wrap: normal;
     text-indent: 10%;
     width: 400px;
+}
+#subscribe {
+    float: right;
+}
+#socials {
+    margin-top: 40%;
+}
+
+#etext{
+    float: left;
+    border: none;
+    padding: 2px 10px 2px 4px;
+    font: 16px Arial, Helvetica, sans-serif;
+    height: 26px;
+    width: 306px;
+    margin: 0;
+    -webkit-appearance: none;
+    outline: none;
+    box-shadow: 0 0 1px rgba(0,0,0,.5);
+    border-radius: 3px 0 0 3px;
+}
+form.email button{
+    float: left;
+    border: none;
+    background-color: #778899;
+    padding: 0;
+    margin: 0;
+    width: 70px;
+    height: 30px;
+    font: bold 12px/30px Arial, Helvetica, sans-serif;
+    position: relative;
+    cursor: pointer;
+    text-shadow: 1px 1px 1px rgba(255,255,255,.5);
+    border-radius: 0 3px 3px 0;
+    text-transform: uppercase;
+    text-align: center;
+}
+form.email button:hover{
+    background-color: #667788;
+}
+form.email button:before{
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: -5px;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid #778899;
+}
+form.email button:hover:before{
+    border-right-color: #667788;
+    text-shadow: 1px 1px 1px rgba(255,255,255,.6);
+}
+form.email input::-webkit-input-placeholder {
+    color: #999;
+    font-weight: normal;
+    font-style: italic;
+}
+
+form.email input:-moz-placeholder {
+    color: #999;
+    font-weight: normal;
+    font-style: italic;
+}
+
+form.email input:-ms-input-placeholder {
+    color: #999;
+    font-weight: normal;
+    font-style: italic;
+}
+#terms {
+    margin-top: 10%;
 }
