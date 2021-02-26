@@ -1,6 +1,6 @@
 <?php
  $emailErr = $termsErr = "";
- $email = $mster  = "";
+ $email = $terms  = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -9,7 +9,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $emailErr = "Email required";
     } else {
         $email = test_input($_POST["email"]);
-        // проверьте, правильно ли сформирован адрес электронной почты
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $emailErr = "Wrong email format ";
         }
@@ -18,9 +17,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     if (empty($_POST["terms"])) {
-        $genderErr = "Terms required";
+        $termsErr = "Terms required";
     } else {
-        $gender = test_input($_POST["terms"]);
+        $terms = test_input($_POST["terms"]);
     }
 }
 
@@ -54,10 +53,10 @@ function test_input($data) {
         <form class="email" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <input id="etext" type="text" name="email" placeholder="Enter Email" required>
 
-            <button type="submit">Send</button>
-            <p><input id="terms" type="checkbox" name="terms"> I agree to <u>terms of service</u></p><br>
-            <span class="error"> <?php echo $emailErr;?></span><br>
-            <span class="error"> <?php echo $termsErr;?>
+            <button type="submit">Send</button><br>
+            <span class="error" style="color: red"> <?php echo $emailErr;?></span>
+            <p><input id="terms" type="checkbox" name="terms"> I agree to <u>terms of service</u></p>
+            <span class="error" style="color: red"> <?php echo $termsErr;?></span>
         </form>
 
     </div>
