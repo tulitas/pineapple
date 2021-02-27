@@ -49,10 +49,11 @@ if (($_SERVER["REQUEST_METHOD"] ?? 'GET') == "POST") {
     function validate() {
 
         let valid = true;
+        let valid2 = true;
         valid = checkEmail($("#email"));
-        valid = termsEmpty($("#terms"));
+        valid2 = termsEmpty($("#terms"));
         $("#button").attr("disabled", true);
-        if (valid) {
+        if (valid, valid2) {
             $("#button").attr("disabled", false);
         }
     }
@@ -154,5 +155,5 @@ if (($_SERVER["REQUEST_METHOD"] ?? 'GET') == "POST") {
         <a href="#" class="fa fa-instagram"></a>
         <a href="#" class="fa fa-youtube"></a>
     </div>
-
+    <a href="../pages/subscribesList.php">Subrcribers</a>
 </div>
