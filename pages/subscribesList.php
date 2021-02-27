@@ -18,40 +18,57 @@
 <body>
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/dataBase/config.php";
-
-$sql = "SELECT * FROM pineapple";
-if ($result = mysqli_query($link, $sql)) {
-    if (mysqli_num_rows($result) > 0) {
-        echo "<table class='table'>";
-        echo "<thead>";
-        echo "<tr>";
-        echo "<th>Id</th>";
-        echo "<th>email</th>";
-        echo "<th>date</th>";
-
-        echo "</tr>";
-        echo "</thead>";
-        echo "<tbody>";
-        while ($row = mysqli_fetch_array($result)) {
-            echo "<tr>";
-            echo "<td>" . $row['id'] . "</td>";
-            echo "<td>" . $row['email'] . "</td>";
-            echo "<td>" . $row['createDate'] . "</td>";
-
-            echo "</td>";
-            echo "</tr>";
-        }
-        echo "</tbody>";
-        echo "</table>";
-        mysqli_free_result($result);
-    } else {
-        echo "<p class='lead'><em>No records were found.</em></p>";
-    }
+//sort
+$sort_list = array(
+    'createDate_asc'   => '`createDate`',
+    'createDate_desc'  => '`createDate` DESC',
+    'email_asc'  => '`email`',
+    'email_desc' => '`email` DESC',
+    'id_asc'  => '`id`',
+    'id_desc' => '`id` DESC'
+);
+$sort = @$_GET['sort'];
+if (array_key_exists($sort, $sort_list)) {
+    $sort_sql = $sort_list[$sort];
 } else {
-    echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+    $sort_sql = reset($sort_list);
+}
+$dbh = new PDO('mysql:dbname=php;host=localhost:3340', 'root', 'root');
+$sth = $dbh->prepare("SELECT * FROM `pineapple` ORDER BY {$sort_sql}");
+$sth->execute();
+$list = $sth->fetchAll(PDO::FETCH_ASSOC);
+function sort_link_th($title, $a, $b) {
+    $sort = @$_GET['sort'];
+
+    if ($sort == $a) {
+        return '<a class="active" href="?sort=' . $b . '">' . $title . ' <i>▲</i></a>';
+    } elseif ($sort == $b) {
+        return '<a class="active" href="?sort=' . $a . '">' . $title . ' <i>▼</i></a>';
+    } else {
+        return '<a href="?sort=' . $a . '">' . $title . '</a>';
+    }
 }
 
-mysqli_close($link);
 ?>
+<table>
+    <thead>
+    <tr>
+        <th><?php echo sort_link_th('Id', 'id_asc', 'id_desc'); ?></th>
+        <th><?php echo sort_link_th('Email', 'email_asc', 'email_desc'); ?></th>
+        <th><?php echo sort_link_th('Create Date', 'createDate_asc', 'createDate_desc'); ?></th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <?php foreach ($list as $row): ?>
+        <tr>
+            <td><?php echo $row['id']; ?></td>
+            <td><?php echo $row['email']; ?></td>
+            <td><?php echo $row['createDate']; ?></td>
+
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
 </body>
 </html>
