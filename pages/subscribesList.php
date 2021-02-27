@@ -85,7 +85,7 @@ $rs_result = mysqli_query($link, $sql);
                     <td><?php echo $row1["email"]; ?></td>
                     <td><?php echo $row1["createDate"]; ?></td>
                     <td> <a href="deletePage.php?id=<?php echo $row1['id'];?>">delete</></td>
-                    <td><input type="checkbox" value="<?php echo $row1['id']; ?>" name="data[]" id="data"></td>
+                    <td><input type="checkbox" value="<?php echo $row1['id']; ?>" name="pineapple[]" id="data"></td>
 
 
                 </tr>
