@@ -127,11 +127,11 @@
 
 
     <div id="subscribe">
-        <form class="email" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <form class="email" method="post" action="successMessage.php">
             <div class="input-group"> <span class="email-validation validation-error" style="color: red"></span></div>
             <input id="email" type="text" name="email" placeholder="Enter Email" required class="input-control" onblur="validate()">
 
-            <button type="submit" id="button" disabled="disabled">Send</button>
+            <button type="submit" id="button" disabled="disabled" >Send</button>
             <br>
             <p><input id="terms" type="checkbox" name="terms" required class="input-control" onblur="validate()"> I agree to <u>terms of service</u></p>
         </form>
