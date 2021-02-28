@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../styles/icons.css">
     <link rel="stylesheet" type="text/css" href="../styles/devices.css">
     <link rel="stylesheet" type="text/css" href="../styles/subscribesList.css">
-    <link rel="stylesheet" type="text/css" href="/js/exportList.js">
+    <link rel="stylesheet" type="text/css" href="/js/sort.js">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
     <title>Subscribers List</title>

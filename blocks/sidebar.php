@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="/js/validate.js">
+
 <?php
 $createDate = new DateTime();
 $formateDate = $createDate->format('H:i:s Y.m.d');
