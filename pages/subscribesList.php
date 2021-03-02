@@ -143,6 +143,7 @@ $rs_result = mysqli_query($link, $sql);
         window.location.href = 'subscribesList.php?page=' + page;
     }
 </script>
+
 <a href="../pages/index.php">Home</a>
 </body>
 </html>
