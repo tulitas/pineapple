@@ -77,21 +77,19 @@ $rs_result = mysqli_query($link, $sql);
             </tr>
             </thead>
             <tbody>
-            <?php
-            while ($row1 = mysqli_fetch_array($rs_result)) {
-                ?>
-                <tr>
-                    <td><?php echo $row1["id"]; ?></td>
-                    <td><?php echo $row1["email"]; ?></td>
-                    <td><?php echo $row1["createDate"]; ?></td>
-                    <td> <a href="deletePage.php?id=<?php echo $row1['id'];?>">delete</></td>
+
+            <?php foreach ($list as $row): ?>
+
+            <tr>
+                <td><?php echo $row['id']; ?></td>
+                <td><?php echo $row['email']; ?></td>
+                <td><?php echo $row['createDate']; ?></td>
+                    <td> <a href="deletePage.php?id=<?php $row1 = mysqli_fetch_array($rs_result);
+                        echo $row1['id'];?>">delete</></td>
                     <td><input type="checkbox" value="<?php echo $row1['id']; ?>" name="pineapple[]" id="data"></td>
+            </tr>
 
-
-                </tr>
-                <?php
-            };
-            ?>
+            <?php endforeach; ?>
             </tbody>
         </table>
         <div class="pagination">
