@@ -118,11 +118,12 @@ if (($_SERVER["REQUEST_METHOD"] ?? 'GET') == "POST") {
         return result;
     }
 </script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <div id="sidebar" style="width: 40%">
     <div id="navigation">
         <ul>
 
-            <li id="home"><a href="/pages/index.php"><img src="/images/pinIcon.png" alt="Home"></a></li>
+            <li id="home"><a href="#"><img src="/images/icons8.png" alt="Home"></a></li>
             <li id="about" style="float: right"><a href="#">About</a></li>
             <li id="hiw" style="float: right"><a href="#">How it works</a></li>
             <li id="contact" style="float: right"><a href="#">Contact</a></li>
@@ -132,11 +133,9 @@ if (($_SERVER["REQUEST_METHOD"] ?? 'GET') == "POST") {
     <div id="header">
         <h2 id="them">Subscribe to newsletter</h2>
     </div>
-    <p id="discount" style="text-align: left">
+    <p id="discount" style="">
         Subscribe to our newsletterand get 10% discount on pineapple glasses.
     </p>
-
-
     <div id="subscribe">
         <form class="email" method="post" >
             <div class="input-group"><span class="email-validation validation-error" style="color: red"></span></div>
@@ -148,7 +147,6 @@ if (($_SERVER["REQUEST_METHOD"] ?? 'GET') == "POST") {
                 agree to <u>terms of service</u></p>
             <input id="createDate" name="createDate" value="<?php echo $formateDate; ?>" style="visibility: hidden">
         </form>
-
     </div>
 
     <div id="socials">

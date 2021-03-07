@@ -44,6 +44,7 @@ li a {
 
 }
 #discount {
+    text-align: justify;
     color: #6a707b;
     word-wrap: normal;
     text-indent: 10%;

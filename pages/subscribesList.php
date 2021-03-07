@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="eng">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../styles/sidebar.css">
@@ -86,7 +87,7 @@ $rs_result = mysqli_query($link, $sql);
                 <td><?php echo $row['createDate']; ?></td>
                     <td> <a href="deletePage.php?id=<?php $row1 = mysqli_fetch_array($rs_result);
                         echo $row1['id'];?>">delete</></td>
-                    <td><input type="checkbox" value="<?php echo $row1['id']; ?>" name="pineapple[]" id="data"></td>
+                    <td><input type="checkbox" value="<?php echo $row1['id']; ?>" name="data[]" id="data"></td>
             </tr>
 
             <?php endforeach; ?>
@@ -134,6 +135,12 @@ $rs_result = mysqli_query($link, $sql);
     <input name="submit" type="submit" value="Export" id="submit">
 
 </form>
+<form action="../dataBase/search.php">
+    <p>Search by email: <input type="text" name="search" id="">
+        <input type="submit" value="Search"></p>
+    <hr>
+</form>
+
 <script>
     function go2Page() {
         let page = document.getElementById("page").value;
