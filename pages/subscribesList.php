@@ -135,12 +135,17 @@ $rs_result = mysqli_query($link, $sql);
     <input name="submit" type="submit" value="Export" id="submit">
 
 </form>
-<form action="../dataBase/search.php">
-    <p>Search by email: <input type="text" name="search" id="">
-        <input type="submit" value="Search"></p>
+<form action="../dataBase/search.php" name="search" method="post">
+    <p>Search by email: <input type="search" name="query" placeholder="Search">
+        <input type="submit" value="Search by email" name="submit"></p>
     <hr>
 </form>
-
+<?php
+if (!empty($_POST['query'])) {
+    $search_result = search ($_POST['query']);
+    echo $search_result;
+}
+?>
 <script>
     function go2Page() {
         let page = document.getElementById("page").value;
@@ -150,5 +155,6 @@ $rs_result = mysqli_query($link, $sql);
 </script>
 
 <a href="../pages/index.php">Home</a>
+
 </body>
 </html>
