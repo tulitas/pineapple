@@ -3,7 +3,7 @@ require_once("../dataBase/config.php");
 
 $dbn = new PDO('mysql:dbname=php;host=localhost:3340', 'root', 'root');
 $query = "SELECT * FROM pineapple ORDER BY id DESC";
-
+$result = mysqli_query($link, $query);
 
 
 
@@ -17,7 +17,7 @@ $query = "SELECT * FROM pineapple ORDER BY id DESC";
     $fields = array('id', 'email', 'createDate');
     fputcsv($f, $fields, $delimiter);
 
-    while($row = $query){
+    while($row = $result->fetch_array()){
 
         $lineData = array('id' => $row['id'],'email' =>  $row['email'], 'createDate' => $row['createDate']);
         fputcsv($f, $lineData, $delimiter);

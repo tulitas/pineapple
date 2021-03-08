@@ -140,6 +140,7 @@ $rs_result = mysqli_query($link, $sql);
         <input type="submit" value="Search by email" name="submit"></p>
     <hr>
 </form>
+
 <?php
 if (!empty($_POST['query'])) {
     $search_result = search ($_POST['query']);

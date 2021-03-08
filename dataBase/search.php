@@ -8,7 +8,7 @@ if ($link->connect_error) {
 function search ($query)
 {
     $sql = "SELECT id, email, createDate FROM pineapple where email like '%$query%'";
-    $result = $link->query($sql);
+    $result = mysqli_query($link, $sql);
 
     if ($result->num_rows > 0) {
         // output data of each row
