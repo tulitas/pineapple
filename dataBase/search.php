@@ -26,7 +26,6 @@ function countEmails($resultFind)
                   Email: " . $row['email'] . "<br>
                   Create Date: " . $row['createDate'] . "<br>
                   ";
-            var_dump($_REQUEST['search']);
         }
     } else {
         echo "No data";
@@ -36,12 +35,16 @@ function emails($emailsFound){
     if ($emailsFound->num_rows > 0) {
         while ($row2 = $emailsFound->fetch_assoc()) {
             $arr = doesItExist($row2);
+            $emailForButton =  $row2['email'];
+            $formatedButton = stristr($emailForButton, "@");
+//            echo stristr($emailForButton, "@");
+            echo "<button> " . $formatedButton . "</button> <br>";
 
-            echo "<button> " . $row2['email'] . "</button> <br>";
         }
     }else{
         echo "no data";
     }
+
 }
 ?>
 <?php
