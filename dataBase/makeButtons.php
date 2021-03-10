@@ -8,9 +8,7 @@ $sql2 = "SELECT *  FROM pineapple ";
 $result2 = $link -> query($sql2);
 function doesItExistEmail(array $arr) {
     return array(
-        'email' => $arr['email'] != false ? $arr['email'] : 'No data',
-        'id' => $arr['id'] != false ? $arr['id'] : 'No data',
-        'createDate' => $arr['createDate'] != false ? $arr['createDate'] : 'No data'
+        'email' => $arr['email'] != false ? $arr['email'] : 'No data'
     );
 }
 function emails($emailsFound){
