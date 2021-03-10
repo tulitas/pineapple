@@ -107,14 +107,14 @@ $rs_result = mysqli_query($link, $sql);
     <input name="submit" type="submit" value="Export" id="submit">
 
 </form>
-<form action="<?= $_SERVER['SCRIPT_NAME'] ?>">
-    <p>Find by email: <input type="text" name="search" id=""> <input type="submit" value="Поиск"></p>
+<form action="<?= $_SERVER['SCRIPT_NAME'] ?>" method="post">
+    <p>Find by email: <input type="text" name="search" id="search">
+        <input type="submit" value="Find by email"></p>
     <hr>
 </form>
 
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/dataBase/search.php";
-
 ?>
 
 <script>
@@ -124,7 +124,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/dataBase/search.php";
         window.location.href = 'subscribesList.php?page=' + page;
     }
 </script>
-
+<br>
 <a href="../pages/index.php">Home</a>
 
 </body>
