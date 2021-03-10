@@ -62,93 +62,110 @@ $start_from = ($page - 1) * $per_page_record;
 $sql = "SELECT * FROM pineapple LIMIT $start_from, $per_page_record";
 $rs_result = mysqli_query($link, $sql);
 ?>
+<div style="float: right">
+    <?php
+    require_once $_SERVER['DOCUMENT_ROOT'] . "/dataBase/makeButtons.php";
+    ?>
+</div>
 <form action="../controllers/export_csv.php" method="post" name="data_table">
-<div class="container">
-    <br>
-    <div>
-        <table class="table table-striped table-condensed
+    <div class="container">
+        <br>
+
+
+        <div style="float: left;">
+            <table class="table table-striped table-condensed
                                           table-bordered">
-            <thead>
-            <tr>
-                <th><?php echo sort_link_th('Id', 'id_asc', 'id_desc'); ?></th>
-                <th><?php echo sort_link_th('Email', 'email_asc', 'email_desc'); ?></th>
-                <th><?php echo sort_link_th('Create Date', 'createDate_asc', 'createDate_desc'); ?></th>
-                <td>Action</td>
-                <td>To CSV</td>
-            </tr>
-            </thead>
-            <tbody>
+                <thead>
+                <tr>
+                    <th><?php echo sort_link_th('Id', 'id_asc', 'id_desc'); ?></th>
+                    <th><?php echo sort_link_th('Email', 'email_asc', 'email_desc'); ?></th>
+                    <th><?php echo sort_link_th('Create Date', 'createDate_asc', 'createDate_desc'); ?></th>
+                    <td>Action</td>
+                    <td>To CSV</td>
+                </tr>
+                </thead>
+                <tbody>
 
-            <?php foreach ($list as $row): ?>
+                <?php foreach ($list as $row): ?>
 
-            <tr>
-                <td><?php echo $row['id']; ?></td>
-                <td><?php echo $row['email']; ?></td>
-                <td><?php echo $row['createDate']; ?></td>
-                    <td> <a href="deletePage.php?id=<?php $row1 = mysqli_fetch_array($rs_result);
-                        echo $row1['id'];?>">delete</></td>
-                    <td><input type="checkbox" value="<?php echo $row1['id']; ?>" name="data[]" id="data"></td>
-            </tr>
+                    <tr>
+                        <td><?php echo $row['id']; ?></td>
+                        <td><?php echo $row['email']; ?></td>
+                        <td><?php echo $row['createDate']; ?></td>
+                        <td><a href="deletePage.php?id=<?php $row1 = mysqli_fetch_array($rs_result);
+                            echo $row1['id']; ?>">delete</>
+                        </td>
+                        <td><input type="checkbox" value="<?php echo $row1['id']; ?>" name="data[]" id="data"></td>
+                    </tr>
 
-            <?php endforeach; ?>
-            </tbody>
-        </table>
-        <div class="pagination">
-            <?php
-            $sql = "SELECT COUNT(*) FROM pineapple";
-            $rs_result = mysqli_query($link, $sql);
-            $row1 = mysqli_fetch_row($rs_result);
-            $total_records = $row1[0];
+                <?php endforeach; ?>
+                </tbody>
+            </table>
 
-            echo "</br>";
-            // Number of pages required.
-            $total_pages = ceil($total_records / $per_page_record);
-            $pagLink = "";
+            <div class="pagination">
+                <?php
+                $sql = "SELECT COUNT(*) FROM pineapple";
+                $rs_result = mysqli_query($link, $sql);
+                $row1 = mysqli_fetch_row($rs_result);
+                $total_records = $row1[0];
 
-            if ($page >= 2) {
-                echo "<a href='subscribesList.php?page=" . ($page - 1) . "'>  Prev </a>";
-            }
+                echo "</br>";
+                // Number of pages required.
+                $total_pages = ceil($total_records / $per_page_record);
+                $pagLink = "";
 
-            for ($i = 1; $i <= $total_pages; $i++) {
-                if ($i == $page) {
-                    $pagLink .= "<a class = 'active' href='subscribesList.php?page="
-                        . $i . "'>" . $i . " </a>";
-                } else {
-                    $pagLink .= "<a href='subscribesList.php?page=" . $i . "'>   
-                                                " . $i . " </a>";
+                if ($page >= 2) {
+                    echo "<a href='subscribesList.php?page=" . ($page - 1) . "'>  Prev </a>";
                 }
-            };
-            echo $pagLink;
 
-            if ($page < $total_pages) {
-                echo "<a href='subscribesList.php?page=" . ($page + 1) . "'>  Next </a>";
-            }
-            ?>
-        </div>
-        <div class="inline">
-            <input id="page" type="number" min="1" max="<?php echo $total_pages ?>"
-                   placeholder="<?php echo $page . "/" . $total_pages; ?>">
-            <button onClick="go2Page();">Go</button>
+                for ($i = 1; $i <= $total_pages; $i++) {
+                    if ($i == $page) {
+                        $pagLink .= "<a class = 'active' href='subscribesList.php?page="
+                            . $i . "'>" . $i . " </a>";
+                    } else {
+                        $pagLink .= "<a href='subscribesList.php?page=" . $i . "'>   
+                                                " . $i . " </a>";
+                    }
+                };
+                echo $pagLink;
+
+                if ($page < $total_pages) {
+                    echo "<a href='subscribesList.php?page=" . ($page + 1) . "'>  Next </a>";
+                }
+                ?>
+            </div>
+            <div class="inline">
+                <input id="page" type="number" min="1" max="<?php echo $total_pages ?>"
+                       placeholder="<?php echo $page . "/" . $total_pages; ?>">
+                <button onClick="go2Page();">Go</button>
+            </div>
+
+            <input name="submit" type="submit" value="Export" id="submit">
+            <form action="../dataBase/search.php" method="post">
+                <p>Search by email: <input type="text" name="search">
+                    <input type="submit" value="Search"></p>
+                <hr>
+            </form>
+            <a href="../pages/index.php">Home</a>
         </div>
     </div>
-</div>
-    <input name="submit" type="submit" value="Export" id="submit">
+
 
 </form>
-<form action="../dataBase/search.php">
-    <p>Search by email: <input type="text" name="search" id="">
+<form action="../dataBase/search.php" method="post">
+    <p>Search by email: <input type="text" name="search">
         <input type="submit" value="Search"></p>
     <hr>
 </form>
+    <script>
+        function go2Page() {
+            let page = document.getElementById("page").value;
+            page = ((page ><?php echo $total_pages; ?>) ?<?php echo $total_pages; ?>: ((page < 1) ? 1 : page));
+            window.location.href = 'subscribesList.php?page=' + page;
+        }
+    </script>
 
-<script>
-    function go2Page() {
-        let page = document.getElementById("page").value;
-        page = ((page ><?php echo $total_pages; ?>) ?<?php echo $total_pages; ?>: ((page < 1) ? 1 : page));
-        window.location.href = 'subscribesList.php?page=' + page;
-    }
-</script>
 
-<a href="../pages/index.php">Home</a>
+
 </body>
 </html>

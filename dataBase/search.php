@@ -1,40 +1,55 @@
 <?php
-//$inputSearch = $_REQUEST['search'];
-//require_once("../dataBase/config.php");
-//$dbn = new PDO('mysql:dbname=php;host=localhost:3340', 'root', 'root');
-//// Создаём SQL запрос
-//$sql = "SELECT * FROM `pineapple` WHERE  `email` like '$inputSearch' ";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/dataBase/config.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/pages/subscribesList.php";
+
+if ($link->connect_error) {
+    die("Connection failed: " . $link->connect_error);
+}
+$inputSearch = $_REQUEST['search'];
+$sql1 = "SELECT * FROM `pineapple` where email  like '%$inputSearch%'";
+//$sql2 = "SELECT *  FROM pineapple ";
+//$result2 = $link -> query($sql2);
+$result = $link -> query($sql1);
+function doesItExist(array $arr) {
+    return array(
+        'email' => $arr['email'] != false ? $arr['email'] : 'No data',
+        'id' => $arr['id'] != false ? $arr['id'] : 'No data',
+        'createDate' => $arr['createDate'] != false ? $arr['createDate'] : 'No data'
+    );
+}
+function countEmails($resultFind)
+{
+    if ($resultFind->num_rows > 0) {
+        while ($row = $resultFind->fetch_assoc()) {
+            $arr = doesItExist($row);
+            echo "ID: " . $row['id'] . "<br>
+                  Email: " . $row['email'] . "<br>
+                  Create Date: " . $row['createDate'] . "<br>
+                  ";
+        }
+    } else {
+        echo "No data";
+    }
+}
+//function emails($emailsFound){
+//    if ($emailsFound->num_rows > 0) {
+//        while ($row2 = $emailsFound->fetch_assoc()) {
+//            $arr = doesItExist($row2);
+//            $emailForButton =  $row2['email'];
+//            $formatedButton = stristr($emailForButton, "@");
+//            echo "<button> " . $formatedButton . "</button> <br>";
 //
-//// Отправляем SQL запрос
-//$result = $dbn -> query($sql);
-//
-//function doesItExist(array $arr) {
-//    // Создаём новый массив
-//    return array(
-//        'id' => $arr['id'] != false ? $arr['id'] : 'No dates',
-//        'email' => $arr['email'] != false ? $arr['email'] : 'No dates',
-//        'createDate' => $arr['createDate'] != false ? $arr['createDate'] : 'No dates'
-//    ); // Возвращаем этот массив
-//}
-//function countPeople($result) {
-//
-//    // Проверка на то, что строк больше нуля
-//    if ($result -> num_rows > 0) {
-//        // Цикл для вывода данных
-//        while ($row = $result -> fetch_assoc()) {
-//            // Получаем массив с строками которые нужно выводить
-//            $arr = doesItExist($row);
-//            // Вывод данных
-//            echo "ID: ". $row['id'] ."<br>
-//                  Имя: ". $row['name'] ."<br>
-//                  Фамилия: ". $row['surname'] ."<br>
-//                  Телефон: ". $row['number_phone'] ."<br>
-//                  Email: ". $arr['email'] ."<br>
-//                  Город: ". $arr['city'] ."<br>
-//                  Год рождения: ". $arr['year'] ."<hr>";
 //        }
-//        // Если данных нет
-//    } else {
-//        echo "Не кто не найден";
+//    }else{
+//        echo "no data";
 //    }
+//
 //}
+
+countEmails($result);
+//emails($result2);
+
+
+
+
+
