@@ -94,34 +94,7 @@ $rs_result = mysqli_query($link, $sql);
         </table>
         <div class="pagination">
             <?php
-            $sql = "SELECT COUNT(*) FROM pineapple";
-            $rs_result = mysqli_query($link, $sql);
-            $row1 = mysqli_fetch_row($rs_result);
-            $total_records = $row1[0];
-
-            echo "</br>";
-            // Number of pages required.
-            $total_pages = ceil($total_records / $per_page_record);
-            $pagLink = "";
-
-            if ($page >= 2) {
-                echo "<a href='subscribesList.php?page=" . ($page - 1) . "'>  Prev </a>";
-            }
-
-            for ($i = 1; $i <= $total_pages; $i++) {
-                if ($i == $page) {
-                    $pagLink .= "<a class = 'active' href='subscribesList.php?page="
-                        . $i . "'>" . $i . " </a>";
-                } else {
-                    $pagLink .= "<a href='subscribesList.php?page=" . $i . "'>   
-                                                " . $i . " </a>";
-                }
-            };
-            echo $pagLink;
-
-            if ($page < $total_pages) {
-                echo "<a href='subscribesList.php?page=" . ($page + 1) . "'>  Next </a>";
-            }
+            require_once $_SERVER['DOCUMENT_ROOT'] . "/controllers/pagination.php";
             ?>
         </div>
         <div class="inline">
@@ -141,21 +114,9 @@ $rs_result = mysqli_query($link, $sql);
 
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/dataBase/search.php";
-function countPeople($resultFind)
-{
-    if ($resultFind->num_rows > 0) {
-        while ($row = $resultFind->fetch_assoc()) {
-            $arr = doesItExist($row);
-            echo "ID: " . $row['id'] . "<br>
-                  Email: " . $row['email'] . "<br>
-                  Create Date: " . $row['createDate'] . "<br>
-                  ";
-        }
-    } else {
-        echo "No data";
-    }
-}
+
 ?>
+
 <script>
     function go2Page() {
         let page = document.getElementById("page").value;
