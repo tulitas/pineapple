@@ -9,7 +9,6 @@
     <link rel="stylesheet" type="text/css" href="../styles/icons.css">
     <link rel="stylesheet" type="text/css" href="../styles/devices.css">
     <link rel="stylesheet" type="text/css" href="../styles/subscribesList.css">
-    <link rel="stylesheet" type="text/css" href="/js/sort.js">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
     <title>Subscribers List</title>
@@ -135,16 +134,26 @@ $rs_result = mysqli_query($link, $sql);
     <input name="submit" type="submit" value="Export" id="submit">
 
 </form>
-<form action="../dataBase/search.php" name="search" method="post">
-    <p>Search by email: <input type="search" name="query" placeholder="Search">
-        <input type="submit" value="Search by email" name="submit"></p>
+<form action="<?= $_SERVER['SCRIPT_NAME'] ?>">
+    <p>Find by email: <input type="text" name="search" id=""> <input type="submit" value="Поиск"></p>
     <hr>
 </form>
 
 <?php
-if (!empty($_POST['query'])) {
-    $search_result = search ($_POST['query']);
-    echo $search_result;
+require_once $_SERVER['DOCUMENT_ROOT'] . "/dataBase/search.php";
+function countPeople($resultFind)
+{
+    if ($resultFind->num_rows > 0) {
+        while ($row = $resultFind->fetch_assoc()) {
+            $arr = doesItExist($row);
+            echo "ID: " . $row['id'] . "<br>
+                  Email: " . $row['email'] . "<br>
+                  Create Date: " . $row['createDate'] . "<br>
+                  ";
+        }
+    } else {
+        echo "No data";
+    }
 }
 ?>
 <script>
