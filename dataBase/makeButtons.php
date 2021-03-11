@@ -16,8 +16,10 @@ function emails($emailsFound){
         while ($row2 = $emailsFound->fetch_assoc()) {
             $arr = doesItExistEmail($row2);
             $emailForButton =  $row2['email'];
-            $formattedButton = stristr($emailForButton, "@");
-            echo "<button onclick='findByFormattedButon();'> " . $formattedButton . "</button> <br>";
+            $formattedEmail = stristr($emailForButton, "@");
+            $formattedEmailForButton = array();
+            if (!$formattedEmailForButton.e)
+                echo "<button onclick='findByFormattedButon();'> " . $formattedEmail . "</button> <br>";
 
         }
     }else{

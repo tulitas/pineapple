@@ -141,11 +141,7 @@ $rs_result = mysqli_query($link, $sql);
             </div>
 
             <input name="submit" type="submit" value="Export" id="submit">
-            <form action="../dataBase/search.php" method="post">
-                <p>Search by email: <input type="text" name="search">
-                    <input type="submit" value="Search"></p>
-                <hr>
-            </form>
+            <br>
             <a href="../pages/index.php">Home</a>
         </div>
     </div>
